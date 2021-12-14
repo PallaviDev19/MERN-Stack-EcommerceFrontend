@@ -75,6 +75,7 @@ const Price = styled.div`
 const addtocart = () => {
   console.log("adddddd");
 };
+
 const Product = ({ item }) => {
   return (
     <Container>

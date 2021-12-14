@@ -3,7 +3,7 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import Category from "./Category";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
@@ -57,6 +57,17 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  
+  // Logout pllv
+  let user = JSON.parse(localStorage.getItem('userDetails'))
+  console.warn(user)
+  const navigate = useNavigate();
+  function logOut(){
+    localStorage.clear();
+    navigate('/.');
+  }
+  //Logout pllv Fisnish
+
   // const {totalQuantities} = useSelector(state=>state.CartReducer)
   return (
     <Container>
@@ -71,6 +82,7 @@ const Navbar = () => {
         <Center>
           <Logo><Link to="/" style={{color:"black", textDecoration: "none"}}>SHOPAHOLIC</Link></Logo>
         </Center>
+
         <Right>
           {/* <MenuItem><Link to="/shop">Shop</Link></MenuItem> */}
           <NavDropdown title="Shop" id="basic-nav-dropdown">
@@ -83,6 +95,19 @@ const Navbar = () => {
           {/* <MenuItem><Link to="/register">Register</Link></MenuItem> */}
           <Nav.Link  href="/login" id="basic-nav-dropdown">Login</Nav.Link >
           <Nav.Link  href="/register" id="basic-nav-dropdown">Register</Nav.Link >
+
+
+  {/* Profile Code */}
+          {localStorage.getItem('userDetails')?
+          <Nav>
+            <NavDropdown title={user && user.username} id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={logOut}>Logout</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          :null}
+  {/* Finish Profile  */}
+
+
           <MenuItem><Link to="/cart">
             <Badge badgeContent={1} color="primary">
               <ShoppingCartOutlined color="action" />
@@ -90,6 +115,7 @@ const Navbar = () => {
             </Link>
           </MenuItem>
         </Right>
+
       </Wrapper>
     </Container>
   );
