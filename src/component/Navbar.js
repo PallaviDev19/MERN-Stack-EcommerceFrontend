@@ -6,6 +6,7 @@ import Category from "./Category";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import Login from "./Login";
 
 const Container = styled.div`
   height: 60px;
@@ -93,8 +94,9 @@ const Navbar = () => {
         </NavDropdown>
           {/* <MenuItem><Link to="/login">Login</Link></MenuItem> */}
           {/* <MenuItem><Link to="/register">Register</Link></MenuItem> */}
-          <Nav.Link  href="/login" id="basic-nav-dropdown">Login</Nav.Link >
-          <Nav.Link  href="/register" id="basic-nav-dropdown">Register</Nav.Link >
+
+          {/* <Nav.Link  href="/login" id="basic-nav-dropdown">Login</Nav.Link > */}
+          {/* <Nav.Link  href="/register" id="basic-nav-dropdown">Register</Nav.Link > */}
 
 
   {/* Profile Code */}
@@ -104,7 +106,9 @@ const Navbar = () => {
               <NavDropdown.Item onClick={logOut}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          :null}
+          :
+          <Nav.Link  href="/login" id="basic-nav-dropdown">Login</Nav.Link >
+          }
   {/* Finish Profile  */}
 
 
